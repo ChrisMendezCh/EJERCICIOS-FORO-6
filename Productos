@@ -1,0 +1,35 @@
+// Simulación de base de datos de productos
+const productos = [
+    { id: 1, nombre: "Laptop", precio: 1200 },
+    { id: 2, nombre: "Teléfono", precio: 800 },
+    { id: 3, nombre: "Monitor", precio: 300 }
+];
+
+// Función para obtener un producto por ID
+function getProductById(id) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const product = productos.find(prod => prod.id === id);
+            if (product) {
+                resolve(product); // Resolvemos con el producto encontrado
+            } else {
+                reject("Producto no encontrado."); // Rechazamos si no existe
+            }
+        }, 2500); // Espera de 2.5 segundos
+    });
+}
+
+// Uso con async/await
+async function example3() {
+    try {
+        const productId = 2;
+        console.log(`Buscando producto con ID ${productId}...`);
+        const product = await getProductById(productId);
+        console.log("Producto encontrado:", product);
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+// Llamada a la función
+example3();

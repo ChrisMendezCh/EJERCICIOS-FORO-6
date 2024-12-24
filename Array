@@ -1,0 +1,27 @@
+// Función para contar elementos de un array con setTimeout y promesa
+function countElements(array) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (Array.isArray(array)) {
+                resolve(array.length); // Resolvemos con el tamaño del array
+            } else {
+                reject("El argumento no es un array."); // Rechazamos si no es un array
+            }
+        }, 2000); // Espera de 2 segundos
+    });
+}
+
+// Uso con async/await
+async function example1() {
+    try {
+        const array = [1, 2, 3, 4, 5];
+        console.log("Contando elementos...");
+        const count = await countElements(array);
+        console.log(`El array tiene ${count} elementos.`);
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+// Llamada a la función
+example1();

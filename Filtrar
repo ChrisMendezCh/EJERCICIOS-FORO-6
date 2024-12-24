@@ -1,0 +1,28 @@
+// Función para filtrar números pares con un retraso
+function filterEvenNumbers(array) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (Array.isArray(array)) {
+                const evenNumbers = array.filter(num => num % 2 === 0);
+                resolve(evenNumbers); // Resolvemos con los números pares
+            } else {
+                reject("El argumento no es un array.");
+            }
+        }, 2000); // Espera de 2 segundos
+    });
+}
+
+// Uso con async/await
+async function example2() {
+    try {
+        const numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+        console.log("Filtrando números pares...");
+        const evenNumbers = await filterEvenNumbers(numbers);
+        console.log("Números pares:", evenNumbers);
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+// Llamada a la función
+example2();
